@@ -447,7 +447,7 @@ body {
 
 .product-card p {
   font-size: 15px;
-  color: var(--loreal-gold);
+  color: black;
   text-align: center;
   text-shadow: 0 1px 2px #fff, 0 1px 0 #0001;
 }
