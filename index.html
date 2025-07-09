@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L'Oréal | Smart Routine &amp; Product Advisor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <script>
+      // Enable RTL text direction if the page language is a known RTL language
+      const rtlLangs = ["ar", "he", "fa", "ur"];
+      function checkAndSetRTL() {
+        // Check <html lang> or <body lang>
+        const lang = (document.documentElement.lang || document.body.lang || "")
+          .toLowerCase()
+          .slice(0, 2);
+        if (rtlLangs.includes(lang)) {
+          document.body.dir = "rtl";
+        } else {
+          document.body.dir = "ltr";
+        }
+      }
+      // Run on load
+      checkAndSetRTL();
+      // Also observe for changes (e.g. Google Translate)
+      const observer = new MutationObserver(checkAndSetRTL);
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["lang"],
+      });
+    </script>
+    <div class="page-wrapper">
+      <!------- Header / Branding ------->
+      <header class="site-header">
+        <img src="img/loreal-logo.png" alt="L'Oréal Logo" class="logo" />
+        <h1 class="site-title">Smart Routine &amp; Product Advisor</h1>
+      </header>
+
+      <!-- Category Filter & Search -->
+      <div class="search-section" style="flex-direction: column; gap: 10px">
+        <select id="categoryFilter">
+          <option value="" disabled selected>Choose a Category</option>
+          <option value="cleanser">Cleansers</option>
+          <option value="moisturizer">Moisturizers & Treatments</option>
+          <option value="haircare">Haircare</option>
+          <option value="makeup">Makeup</option>
+          <option value="hair color">Hair Color</option>
+          <option value="hair styling">Hair Styling</option>
+          <option value="men's grooming">Men's Grooming</option>
+          <option value="suncare">Suncare</option>
+          <option value="fragrance">Fragrance</option>
+        </select>
+        <input
+          id="productSearch"
+          type="text"
+          placeholder="Search products by name or keyword..."
+          style="
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1.5px solid #e3a535;
+            margin-top: 0;
+          "
+        />
+      </div>
+
+      <!-- Products Grid -->
+      <div id="productsContainer" class="products-grid"></div>
+
+      <!-- Selected Products -->
+      <div class="selected-products">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            gap: 10px;
+          "
+        >
+          <h2 style="margin-bottom: 0">Selected Products</h2>
+          <button
+            id="clearSelectedProducts"
+            type="button"
+            style="
+              background: #e3a535;
+              color: #fff;
+              border: none;
+              border-radius: 6px;
+              padding: 6px 14px;
+              font-size: 14px;
+              cursor: pointer;
+              margin-bottom: 0;
+              margin-left: 10px;
+            "
+          >
+            Clear Selection
+          </button>
+        </div>
+        <div id="selectedProductsList"></div>
+        <button id="generateRoutine" class="generate-btn">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Routine
+        </button>
+      </div>
+
+      <!------- Chat Area ------->
+      <section class="chatbox">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            gap: 10px;
+          "
+        >
+          <h2 style="margin-bottom: 0">Let's Build Your Routine</h2>
+          <button
+            id="clearChat"
+            type="button"
+            style="
+              background: #e3a535;
+              color: #fff;
+              border: none;
+              border-radius: 6px;
+              padding: 6px 14px;
+              font-size: 14px;
+              cursor: pointer;
+              margin-bottom: 0;
+              margin-left: 10px;
+            "
+          >
+            Clear Chat
+          </button>
+        </div>
+        <div id="chatWindow" class="chat-window"></div>
+
+        <form id="chatForm" class="chat-form">
+          <label for="userInput" class="visually-hidden">Message</label>
+          <input
+            id="userInput"
+            name="userInput"
+            type="text"
+            placeholder="Ask me about products or routines…"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" id="sendBtn">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span class="visually-hidden">Send</span>
+          </button>
+        </form>
+      </section>
+
+      <!------- Footer Links ------->
+      <footer class="site-footer">
+        <p>&copy; 2025 L'Oréal. All rights reserved.</p>
+        <nav>
+          <!-- These URLs are placeholders -->
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Contact</a>
+        </nav>
+      </footer>
+    </div>
+
+    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
+    <script src="secrets.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
