@@ -222,13 +222,11 @@ function renderChat() {
   chatWindow.innerHTML = chatHistoryToRender
     .map((msg) => {
       if (msg.role === "user") {
-        // User messages: show as plain text
-        return `<div><b>You:</b> ${escapeHtml(msg.content)}</div>`;
+        // User messages: show in a user bubble
+        return `<div class="chat-bubble user-bubble"><span class="bubble-label">You</span><span class="bubble-content">${escapeHtml(msg.content)}</span></div>`;
       } else {
-        // Advisor messages: format for readability
-        return `<div><b>Advisor:</b> ${formatAdvisorMessage(
-          msg.content
-        )}</div>`;
+        // Advisor messages: show in an advisor bubble
+        return `<div class="chat-bubble advisor-bubble"><span class="bubble-label">Advisor</span><span class="bubble-content">${formatAdvisorMessage(msg.content)}</span></div>`;
       }
     })
     .join("");
@@ -273,6 +271,21 @@ function formatAdvisorMessage(text) {
   html = `<p>${html}</p>`;
   // Remove empty <p></p>
   html = html.replace(/<p>\s*<\/p>/g, "");
+
+  // Bold product names in advisor responses for readability
+  if (Array.isArray(window.allProducts) && window.allProducts.length > 0) {
+    // Sort product names by length descending to avoid partial matches
+    const productNames = window.allProducts
+      .map((p) => p.name)
+      .filter(Boolean)
+      .sort((a, b) => b.length - a.length);
+    for (const name of productNames) {
+      // Regex: match product name outside HTML tags, case-insensitive, not inside <>
+      // This will match the product name if it is not inside an HTML tag
+      const regex = new RegExp(`(?<![\w>])(${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})(?![\w<])`, 'gi');
+      html = html.replace(regex, (prod) => `<strong>${prod}</strong>`);
+    }
+  }
   return html;
 }
 

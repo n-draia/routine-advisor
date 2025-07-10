@@ -1,3 +1,49 @@
+/* Chat bubbles for chat window */
+.chat-bubble {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 8px #c8002e11;
+  font-size: 17px;
+  word-break: break-word;
+}
+.user-bubble {
+  align-self: flex-end;
+  background: linear-gradient(90deg, #ffe5ec 0%, #fff6f8 100%);
+  color: #c8002e;
+  border: 1.5px solid #e3a535;
+  box-shadow: 0 2px 8px #e3a53522;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: left;
+}
+.advisor-bubble {
+  align-self: flex-start;
+  background: linear-gradient(90deg, #fff 0%, #fff6f8 100%);
+  color: #181818;
+  border: 1.5px solid #c8002e44;
+  box-shadow: 0 2px 8px #c8002e22;
+}
+.bubble-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #e3a535;
+  letter-spacing: 0.5px;
+}
+.user-bubble .bubble-label {
+  color: #c8002e;
+}
+.advisor-bubble .bubble-label {
+  color: #e3a535;
+}
+.bubble-content {
+  font-size: 16px;
+  line-height: 1.6;
+}
 /* —— basic reset —— */
 * {
   box-sizing: border-box;
