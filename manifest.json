@@ -1,0 +1,21 @@
+{
+  "name": "L'Oréal Routine Advisor",
+  "short_name": "Routine Advisor",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff6f8",
+  "theme_color": "#c8002e",
+  "description": "Smart Routine & Product Advisor for L'Oréal brands.",
+  "icons": [
+    {
+      "src": "img/intel-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/intel-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
